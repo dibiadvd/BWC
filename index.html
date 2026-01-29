@@ -1,40 +1,265 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" class="scroll-smooth" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="Believers Worship Center - A sanctuary of encounter, transformation, and extravagant worship in Lagos" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Believers Worship Center - A sanctuary of encounter, transformation, and extravagant worship in Lagos, Nigeria" />
   <title>Believers Worship Center</title>
 
-  <!-- ==================== FAVICON & META ==================== -->
-  <link rel="icon" href="https://via.placeholder.com/32/c8102e/ffffff?text=BWC" type="image/png" />
-  <link rel="apple-touch-icon" href="https://via.placeholder.com/180/c8102e/ffffff?text=BWC" />
-
-  <!-- ==================== FONTS ==================== -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- ==================== ICONS & LIBS ==================== -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Tailwind CSS v4 via CDN (for demo; use local build in production) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#c8102e',           // red accent
+              dark:  '#a50d24',
+            },
+            accent:  '#d4af37',             // gold
+            surface: {
+              light: '#ffffff',
+              dark:  '#0f0f0f',
+            },
+            'text-primary': {
+              light: '#111827',
+              dark:  '#f3f4f6',
+            },
+            'text-secondary': {
+              light: '#4b5563',
+              dark:  '#9ca3af',
+            },
+            border: {
+              light: '#e5e7eb',
+              dark:  '#1f2937',
+            },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          boxShadow: {
+            'soft': '0 10px 30px -10px rgba(0,0,0,0.15)',
+            'glow': '0 0 25px -5px rgba(200,16,46,0.3)',
+          },
+          animation: {
+            'kenburns': 'kenburns 32s infinite alternate ease-in-out',
+          },
+          keyframes: {
+            kenburns: {
+              '0%':   { transform: 'scale(1.03) translate(0, 0)' },
+              '100%': { transform: 'scale(1.12) translate(-2%, -1.5%)' },
+            }
+          },
+          transitionProperty: {
+            'height': 'height',
+            'spacing': 'margin, padding',
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- AOS & Swiper -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-  <link rel="stylesheet" href="style.css"/>
 </head>
-<body>
+<body class="min-h-screen bg-surface-light dark:bg-surface-dark text-text-primary-light dark:text-text-primary-dark transition-colors duration-500">
 
   <!-- Floating CTA -->
-  <a href="#connect" class="floating-cta" aria-label="Connect with us">
-    <i class="fas fa-envelope"></i>
+  <a href="#connect" class="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white shadow-glow hover:bg-primary-dark transition-all duration-300 hover:-translate-y-1 hover:scale-110 sm:bottom-8 sm:right-8" aria-label="Connect with us">
+    <i class="fas fa-envelope text-2xl"></i>
   </a>
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container-xl px-4 px-xl-5">
-      <a class="navbar-brand" href="#">Believers Worship Center</a>
+  <nav class="fixed top-0 left-0 right-0 z-40 border-b border-border-light dark:border-border-dark bg-surface-light/90 dark:bg-surface-dark/90 backdrop-blur-xl transition-all duration-300" id="navbar">
+    <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+      <div class="flex h-16 sm:h-20 items-center justify-between">
+        <a href="#" class="text-xl sm:text-2xl font-bold tracking-tight text-primary">BWC</a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-8 xl:gap-12">
+          <a href="#" class="text-base font-medium hover:text-primary transition-colors">Home</a>
+          <a href="#about" class="text-base font-medium hover:text-primary transition-colors">About</a>
+          <a href="#gatherings" class="text-base font-medium hover:text-primary transition-colors">Gatherings</a>
+          <a href="#moments" class="text-base font-medium hover:text-primary transition-colors">Moments</a>
+          <a href="#connect" class="text-base font-medium hover:text-primary transition-colors">Connect</a>
+        </div>
+
+        <!-- Mobile Hamburger + Theme Toggle -->
+        <div class="flex items-center gap-4 lg:hidden">
+          <button id="theme-toggle-mobile" class="text-xl hover:text-primary transition-colors" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button id="mobile-menu-btn" class="text-2xl text-current focus:outline-none" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Desktop Theme Toggle -->
+        <button id="theme-toggle" class="hidden sm:block text-xl hover:text-primary transition-colors" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden lg:hidden absolute top-16 inset-x-0 bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-xl border-b border-border-light dark:border-border-dark py-6 px-5">
+        <div class="flex flex-col gap-6 text-center">
+          <a href="#" class="text-lg font-medium hover:text-primary transition-colors">Home</a>
+          <a href="#about" class="text-lg font-medium hover:text-primary transition-colors">About</a>
+          <a href="#gatherings" class="text-lg font-medium hover:text-primary transition-colors">Gatherings</a>
+          <a href="#moments" class="text-lg font-medium hover:text-primary transition-colors">Moments</a>
+          <a href="#connect" class="text-lg font-medium hover:text-primary transition-colors">Connect</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="home" class="relative h-[85vh] min-h-[620px] sm:h-screen overflow-hidden flex items-center text-text-primary-light dark:text-text-primary-dark">
+    <div class="absolute inset-0">
+      <video autoplay muted loop playsinline preload="auto" class="h-full w-full object-cover" aria-hidden="true">
+        <source src="https://assets.codepen.io/6093409/worship-loop.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70 pointer-events-none z-10"></div>
+
+    <div class="relative z-20 container mx-auto px-5 sm:px-6 text-center">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-extrabold leading-tight tracking-tight drop-shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+        Believers<br class="sm:hidden"> Worship Center
+      </h1>
+      <p class="mt-5 sm:mt-8 text-base sm:text-xl md:text-2xl lg:text-3xl font-light max-w-4xl mx-auto opacity-90" data-aos="fade-up" data-aos-delay="400">
+        A sanctuary where heaven invades earth • Lives are radically transformed • Jesus is extravagantly worshipped
+      </p>
+      <div class="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6" data-aos="fade-up" data-aos-delay="600">
+        <a href="#gatherings" class="w-full sm:w-auto px-8 sm:px-12 py-4 text-base sm:text-lg font-semibold bg-primary text-white rounded-full shadow-glow hover:bg-primary-dark transition-all duration-300 hover:-translate-y-1">Join a Gathering</a>
+        <a href="#connect" class="w-full sm:w-auto px-8 sm:px-12 py-4 text-base sm:text-lg font-semibold border-2 border-white/60 dark:border-white/40 text-white rounded-full hover:bg-white/10 dark:hover:bg-white/5 transition-all duration-300 hover:-translate-y-1">I'm New Here</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="py-16 sm:py-24 lg:py-32 bg-surface-light dark:bg-surface-dark">
+    <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div data-aos="fade-right">
+          <h2 class="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-6 text-primary">Our Story</h2>
+          <p class="text-lg sm:text-xl leading-relaxed text-text-secondary-light dark:text-text-secondary-dark">
+            We are a people called to encounter the living God, to be transformed by His love, and to carry His presence into every sphere of life.
+          </p>
+          <p class="mt-6 text-xl sm:text-2xl font-light italic text-accent">
+            Jesus is our obsession. Worship is our language. Transformation is our testimony.
+          </p>
+        </div>
+        <div class="order-first lg:order-last" data-aos="fade-left" data-aos-delay="250">
+          <div class="relative rounded-3xl overflow-hidden shadow-soft dark:shadow-glow">
+            <img src="https://images.unsplash.com/photo-1529336953128-a85760f58cb5?w=1200&auto=format&fit=crop" class="w-full h-auto aspect-[4/3] sm:aspect-auto object-cover" alt="Worship encounter" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gatherings -->
+  <section id="gatherings" class="py-16 sm:py-24 lg:py-32 bg-surface-light dark:bg-surface-dark">
+    <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-10 text-center text-primary">Our Gatherings</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+        <div class="h-full rounded-3xl border border-border-light dark:border-border-dark bg-surface-light/60 dark:bg-surface-dark/60 backdrop-blur-lg p-6 sm:p-10 text-center shadow-soft dark:shadow-glow transition-all duration-300 hover:-translate-y-4 hover:shadow-glow" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-sun text-6xl sm:text-7xl mb-6 sm:mb-8 text-primary"></i>
+          <h4 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Sunday Experience</h4>
+          <p class="text-text-secondary-light dark:text-text-secondary-dark text-sm sm:text-base mb-2">8:00 AM & 10:00 AM</p>
+          <p>Encounter-driven worship • Anointed preaching • Life Groups</p>
+        </div>
+        <div class="h-full rounded-3xl border border-border-light dark:border-border-dark bg-surface-light/60 dark:bg-surface-dark/60 backdrop-blur-lg p-6 sm:p-10 text-center shadow-soft dark:shadow-glow transition-all duration-300 hover:-translate-y-4 hover:shadow-glow" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-fire-flame-curved text-6xl sm:text-7xl mb-6 sm:mb-8 text-primary"></i>
+          <h4 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Wednesday Awakening</h4>
+          <p class="text-text-secondary-light dark:text-text-secondary-dark text-sm sm:text-base mb-2">6:30 PM</p>
+          <p>Intense prayer • Prophetic ministry • Fresh impartation</p>
+        </div>
+        <div class="h-full rounded-3xl border border-border-light dark:border-border-dark bg-surface-light/60 dark:bg-surface-dark/60 backdrop-blur-lg p-6 sm:p-10 text-center shadow-soft dark:shadow-glow transition-all duration-300 hover:-translate-y-4 hover:shadow-glow" data-aos="fade-up" data-aos-delay="300">
+          <i class="fas fa-heart-pulse text-6xl sm:text-7xl mb-6 sm:mb-8 text-primary"></i>
+          <h4 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Outreach & Discipleship</h4>
+          <p class="text-text-secondary-light dark:text-text-secondary-dark text-sm sm:text-base mb-2">Weekly & Monthly</p>
+          <p>Community transformation • Evangelism • Life Groups</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 sm:py-16 border-t border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+    <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 text-center">
+      <h4 class="text-xl sm:text-2xl font-bold mb-4 text-primary">Believers Worship Center</h4>
+      <p class="text-base sm:text-xl mb-4 sm:mb-6 text-text-secondary-light dark:text-text-secondary-dark">A generation rising • A city being transformed • A world being reached</p>
+      <p class="text-xs sm:text-sm opacity-70">© 2026 — All Glory to Jesus Christ</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 60 });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    menuBtn?.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      const icon = menuBtn.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+
+    // Theme logic
+    const html = document.documentElement;
+    const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
+
+    const setTheme = (theme) => {
+      html.classList.remove('light', 'dark');
+      html.classList.add(theme);
+      localStorage.setItem('theme', theme);
+      const icon = theme === 'dark' ? 'fa-sun' : 'fa-moon';
+      themeToggles.forEach(t => {
+        if (t) t.innerHTML = `<i class="fas ${icon}"></i>`;
+      });
+    };
+
+    // Load saved or system preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+
+    // Toggle listeners
+    themeToggles.forEach(t => t?.addEventListener('click', () => {
+      const current = html.classList.contains('dark') ? 'dark' : 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    }));
+  </script>
+</body>
+</html>      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -214,4 +439,5 @@
     });
   </script>
 </body>
+
 </html>
