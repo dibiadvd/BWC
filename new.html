@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Believers Worship Center – A sanctuary of encounter, transformation, and extravagant worship" />
+  <title>Believers Worship Center</title>
+
+  <!-- Favicons -->
+  <link rel="icon" href="https://via.placeholder.com/32/c8102e/ffffff?text=BWC" type="image/png" />
+  <link rel="apple-touch-icon" href="https://via.placeholder.com/180/c8102e/ffffff?text=BWC" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <!-- Icons & Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    :root {
+      --clr-bg-dark:      #0a0a0a;
+      --clr-bg-light:     #ffffff;
+      --clr-red:          #c41e3a;
+      --clr-red-darker:   #a1122c;
+      --clr-gold:         #d4af37;
+      --clr-gold-dark:    #b8972e;
+      --clr-text-light:   rgba(255,255,255,0.96);
+      --clr-text-dark:    rgba(10,10,10,0.96);
+      --shadow-soft:      0 12px 40px rgba(0,0,0,0.12);
+      --shadow-hover:     0 28px 72px rgba(196,30,58,0.28);
+      --transition:       1.2s cubic-bezier(0.23, 1, 0.32, 1);
+      --overlay-hero:     rgba(10,10,10,0.72);
+    }
+
+    [data-bs-theme="light"] {
+      --bg-body:        var(--clr-bg-light);
+      --text-body:      var(--clr-text-dark);
+      --bg-nav:         rgba(255,255,255,0.97);
+      --bg-card:        rgba(255,255,255,0.94);
+      --shadow:         var(--shadow-soft);
+      --shadow-hover:   0 28px 72px rgba(196,30,58,0.18);
+      --overlay-hero:   rgba(10,10,10,0.38);
+    }
+
+    [data-bs-theme="dark"] {
+      --bg-body:        var(--clr-bg-dark);
+      --text-body:      var(--clr-text-light);
+      --bg-nav:         rgba(10,10,10,0.96);
+      --bg-card:        rgba(30,30,30,0.94);
+      --shadow:         var(--shadow-soft);
+      --shadow-hover:   0 28px 72px rgba(196,30,58,0.32);
+      --overlay-hero:   var(--overlay-hero);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg-body);
+      color: var(--text-body);
+      line-height: 1.8;
+      overflow-x: hidden;
+      transition: background 1.2s var(--transition), color 1.2s var(--transition);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    /* ─── Navbar ──────────────────────────────────────────────── */
+    .navbar {
+      background: var(--bg-nav) !important;
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      border-bottom: 1px solid rgba(196,30,58,0.06);
+      transition: all 0.8s var(--transition);
+      padding: 1.4rem 0;
+    }
+
+    .navbar.scrolled {
+      padding: 1rem 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+
+    .navbar-brand {
+      font-size: clamp(1.8rem, 6vw, 2.4rem);
+      font-weight: 900;
+      color: var(--clr-red) !important;
+      letter-spacing: -2px;
+    }
+
+    .nav-link {
+      font-weight: 500;
+      font-size: clamp(1rem, 3.5vw, 1.12rem);
+      padding: 0.7rem 1.4rem !important;
+      color: var(--text-body) !important;
+      transition: color 0.5s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--clr-red) !important;
+    }
+
+    /* ─── Hero ────────────────────────────────────────────────── */
+    .hero {
+      height: 100vh;
+      min-height: 960px;
+      max-height: 1200px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .video-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .video-layer video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.70) contrast(1.20) saturate(1.15);
+    }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 30%, transparent 30%, rgba(0,0,0,0.88) 90%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-slideshow {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+    }
+
+    .slide-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ken-burns-bg {
+      width: 125%;
+      height: 125%;
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      top: -12.5%;
+      left: -12.5%;
+      animation: ken-burns 56s infinite ease-in-out;
+      will-change: transform;
+    }
+
+    @keyframes ken-burns {
+      0%   { transform: scale(1.00) translate(0%, 0%); }
+      25%  { transform: scale(1.20) translate(-7%, -6%); }
+      50%  { transform: scale(1.24) translate(6%, 5%); }
+      75%  { transform: scale(1.18) translate(-5%, 7%); }
+      100% { transform: scale(1.00) translate(0%, 0%); }
+    }
+
+    .hero-content {
+      z-index: 5;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: clamp(5rem, 15vw, 12rem);
+      line-height: 0.82;
+      letter-spacing: -6px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #fff 15%, #f5f5f5 50%, #fff 85%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 20px 100px rgba(0,0,0,0.9);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.6rem, 5vw, 2.6rem);
+      font-weight: 300;
+      max-width: 1100px;
+      margin: 2rem auto 4rem;
+      opacity: 0.96;
+      letter-spacing: 0.8px;
+      text-shadow: 0 10px 50px rgba(0,0,0,0.9);
+    }
+
+    .btn-hero {
+      padding: clamp(1rem, 3vw, 1.3rem) clamp(2rem, 6vw, 3.5rem);
+      font-size: clamp(1.1rem, 4vw, 1.45rem);
+      font-weight: 600;
+      border-radius: 60px;
+      min-height: 56px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.8s var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--clr-red);
+      border-color: var(--clr-red);
+    }
+
+    .btn-primary:hover {
+      background: var(--clr-red-darker);
+      transform: translateY(-8px);
+      box-shadow: 0 24px 60px rgba(196,30,58,0.55);
+    }
+
+    .btn-outline-light {
+      border-width: 2.5px;
+    }
+
+    .btn-outline-light:hover {
+      background: white;
+      color: var(--clr-dark);
+      transform: translateY(-8px);
+      box-shadow: 0 24px 60px rgba(255,255,255,0.35);
+    }
+
+    /* Theme Toggle */
+    #theme-toggle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white;
+      font-size: 1.55rem;
+      transition: all 0.8s var(--transition);
+      min-width: 48px;
+      min-height: 48px;
+    }
+
+    #theme-toggle:hover {
+      background: var(--clr-red);
+      transform: scale(1.16) rotate(15deg);
+      box-shadow: 0 0 55px rgba(196,30,58,0.6);
+    }
+
+    /* Floating CTA */
+    .floating-cta {
+      position: fixed;
+      bottom: clamp(1.5rem, 5vw, 4rem);
+      right: clamp(1.5rem, 5vw, 4rem);
+      z-index: 1000;
+      width: clamp(70px, 15vw, 94px);
+      height: clamp(70px, 15vw, 94px);
+      border-radius: 50%;
+      background: var(--clr-red);
+      color: white;
+      font-size: clamp(1.6rem, 5vw, 2.1rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 16px 56px rgba(196,30,58,0.6);
+      transition: all 0.8s var(--transition);
+    }
+
+    .floating-cta:hover {
+      transform: scale(1.22) translateY(-12px);
+      box-shadow: 0 32px 96px rgba(196,30,58,0.7);
+    }
+
+    /* Sections */
+    section {
+      padding: clamp(6rem, 12vw, 14rem) 0;
+    }
+
+    .section-title {
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      position: relative;
+      margin-bottom: clamp(3rem, 8vw, 6rem);
+      text-align: center;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(120px, 25vw, 200px);
+      height: 7px;
+      background: linear-gradient(90deg, transparent, var(--clr-red), transparent);
+      border-radius: 4px;
+    }
+
+    /* Card */
+    .card {
+      background: var(--bg-card);
+      border: none;
+      border-radius: clamp(1.5rem, 4vw, 2.5rem);
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      transition: all 1s var(--transition);
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+    }
+
+    .card:hover {
+      transform: translateY(-2.2rem) scale(1.035);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(to bottom, #0a0a0a, #000000);
+      color: var(--text-light);
+      padding: clamp(8rem, 15vw, 14rem) 0 6rem;
+      text-align: center;
+    }
+
+    .social-icon {
+      width: clamp(60px, 12vw, 80px);
+      height: clamp(60px, 12vw, 80px);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      color: white;
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      transition: all 0.8s var(--transition);
+      margin: 0 0.75rem;
+    }
+
+    .social-icon:hover {
+      background: var(--clr-red);
+      transform: translateY(-16px) scale(1.22);
+      box-shadow: 0 0 70px rgba(196,30,58,0.65);
+    }
+
+    /* Mobile-first perfection */
+    @media (max-width: 1400px) {
+      .hero-content { padding: 0 5rem; }
+      .hero-title { font-size: clamp(7rem, 18vw, 11rem); }
+    }
+
+    @media (max-width: 1200px) {
+      .hero-content { padding: 0 4rem; }
+      .section-title { font-size: clamp(4.5rem, 12vw, 6.5rem); }
+    }
+
+    @media (max-width: 992px) {
+      .hero {
+        min-height: 95vh;
+        padding-bottom: 4rem;
+      }
+
+      .hero-title {
+        font-size: clamp(6rem, 20vw, 9rem);
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.8rem, 8vw, 2.6rem);
+      }
+
+      .section-title {
+        font-size: clamp(4rem, 13vw, 5.8rem);
+      }
+
+      .btn-hero {
+        width: 100%;
+        max-width: 480px;
+        margin: 1.25rem auto;
+        padding: 1.2rem 3rem;
+        font-size: 1.35rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 85vh;
+        align-items: flex-end;
+        padding-bottom: 8rem;
+      }
+
+      .hero-content {
+        padding: 0 1.5rem 6rem;
+      }
+
+      .hero-title {
+        font-size: clamp(4.5rem, 22vw, 7.5rem);
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.4rem, 9vw, 2.1rem);
+      }
+
+      .btn-hero {
+        width: 100%;
+        max-width: 420px;
+        padding: 1rem 2.5rem;
+        font-size: 1.25rem;
+      }
+
+      .floating-cta {
+        bottom: 2rem;
+        right: 2rem;
+        width: 76px;
+        height: 76px;
+        font-size: 1.8rem;
+      }
+
+      .d-flex.flex-sm-row {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+      }
+
+      .navbar-nav {
+        text-align: center;
+        gap: 1.25rem;
+        margin: 2.5rem 0;
+      }
+
+      .navbar-toggler {
+        padding: 0.6rem;
+      }
+
+      .card {
+        margin-bottom: 2.5rem;
+      }
+
+      footer {
+        padding: 8rem 0 4rem;
+      }
+
+      .social-icon {
+        width: 64px;
+        height: 64px;
+        font-size: 1.5rem;
+        margin: 0.75rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-title { font-size: 3.8rem; line-height: 0.92; }
+      .hero-subtitle { font-size: 1.35rem; }
+      .btn-hero { font-size: 1.15rem; padding: 1rem 2.2rem; }
+      .section-title { font-size: 2.8rem; }
+    }
+
+    /* Prevent zoom on iOS when focusing inputs */
+    input, button, select, textarea {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating red CTA – sacred accent -->
+  <a href="#connect" class="floating-cta" aria-label="Connect with us">
+    <i class="fas fa-envelope"></i>
+  </a>
+
+  <!-- Navbar – glass luxury -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-xl px-4 px-xl-5">
+      <a class="navbar-brand" href="#">Believers Worship Center</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gatherings">Gatherings</a></li>
+          <li class="nav-item"><a class="nav-link" href="#moments">Moments</a></li>
+          <li class="nav-item"><a class="nav-link" href="#connect">Connect</a></li>
+        </ul>
+
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero – Hillsong-level cinematic masterpiece -->
+  <header id="home" class="hero">
+    <div class="video-layer">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="https://assets.codepen.io/6093409/worship-loop.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="hero-vignette"></div>
+
+    <div class="hero-slideshow">
+      <div class="swiper hero-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><div class="slide-wrapper"><div class="ken-burns-bg" style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2b033f?auto=format&fit=crop&q=90&w=1920');"></div></div></div>
+          <div class="swiper-slide"><div class="slide-wrapper"><div class="ken-burns-bg" style="background-image:url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=90&w=1920');"></div></div></div>
+          <div class="swiper-slide"><div class="slide-wrapper"><div class="ken-burns-bg" style="background-image:url('https://images.unsplash.com/photo-1544022613-eb62c41a0c06?auto=format&fit=crop&q=90&w=1920');"></div></div></div>
+          <div class="swiper-slide"><div class="slide-wrapper"><div class="ken-burns-bg" style="background-image:url('https://images.unsplash.com/photo-1529336953128-a85760f58cb5?auto=format&fit=crop&q=90&w=1920');"></div></div></div>
+          <div class="swiper-slide"><div class="slide-wrapper"><div class="ken-burns-bg" style="background-image:url('https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&q=90&w=1920');"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="container">
+        <h1 class="hero-title" data-aos="fade-up" data-aos-delay="280">Believers<br>Worship Center</h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="480">A sanctuary where heaven invades earth • Lives are radically transformed • Jesus is extravagantly worshipped</p>
+        <div class="mt-5 d-flex flex-column flex-sm-row gap-5 justify-content-center" data-aos="fade-up" data-aos-delay="680">
+          <a href="#gatherings" class="btn btn-primary btn-hero">Join a Gathering</a>
+          <a href="#connect" class="btn btn-outline-light btn-hero">I'm New Here</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="py-5 py-lg-7">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <h2 class="section-title">Our Story</h2>
+          <p class="lead mb-4">We are a people called to encounter the living God, to be transformed by His love, and to carry His presence into every sphere of life.</p>
+          <p class="fs-5 fw-light">Jesus is our obsession. Worship is our language. Transformation is our testimony.</p>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left" data-aos-delay="280">
+          <div class="position-relative rounded-4 overflow-hidden shadow-3d">
+            <img src="https://images.unsplash.com/photo-1529336953128-a85760f58cb5?w=1200&auto=format&fit=crop" class="img-fluid" alt="Encounter">
+            <div class="position-absolute inset-0 bg-gradient-overlay"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gatherings -->
+  <section id="gatherings" class="py-5 py-lg-7">
+    <div class="container">
+      <h2 class="section-title text-center mb-5" data-aos="fade-up">Our Gatherings</h2>
+      <div class="row g-4 g-lg-5">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="120">
+          <div class="card h-100 text-center p-5">
+            <i class="fas fa-sun fa-5x mb-4" style="color:var(--clr-red)"></i>
+            <h4>Sunday Experience</h4>
+            <p class="text-muted small mb-3">8:00 AM & 10:00 AM</p>
+            <p>Encounter-driven worship • Anointed preaching • Life Groups</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="240">
+          <div class="card h-100 text-center p-5">
+            <i class="fas fa-fire-flame-curved fa-5x mb-4" style="color:var(--clr-red)"></i>
+            <h4>Wednesday Awakening</h4>
+            <p class="text-muted small mb-3">6:30 PM</p>
+            <p>Intense prayer • Prophetic ministry • Fresh impartation</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="360">
+          <div class="card h-100 text-center p-5">
+            <i class="fas fa-heart-pulse fa-5x mb-4" style="color:var(--clr-red)"></i>
+            <h4>Outreach & Discipleship</h4>
+            <p class="text-muted small mb-3">Weekly & Monthly</p>
+            <p>Community transformation • Evangelism • Life Groups</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0 text-center text-lg-start">
+          <h4 class="fw-bold mb-3" style="color:var(--clr-red)">Believers Worship Center</h4>
+          <p class="mb-2 fs-5">A generation rising • A city being transformed • A world being reached</p>
+          <p class="small opacity-75">© 2026 — All Glory to Jesus Christ</p>
+        </div>
+        <div class="col-lg-6 text-center text-lg-end">
+          <div class="d-flex gap-5 justify-content-center justify-content-lg-end">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    // AOS – cinematic feel with mobile disable
+    AOS.init({
+      duration: 1400,
+      once: true,
+      offset: 100,
+      disable: window.innerWidth < 992 ? true : false
+    });
+
+    // Navbar scroll elegance
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 120);
+    });
+
+    // Theme toggle – sacred switch
+    const toggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    toggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-bs-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-bs-theme', next);
+      toggle.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // System preference
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      html.setAttribute('data-bs-theme', 'dark');
+      toggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+
+    // Hero cinematic slideshow – Hillsong perfection
+    new Swiper('.hero-swiper', {
+      effect: 'fade',
+      fadeEffect: { crossFade: true },
+      loop: true,
+      autoplay: {
+        delay: 7200,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
+      },
+      speed: 3600,
+      allowTouchMove: window.innerWidth >= 992,
+      preloadImages: true,
+      parallax: window.innerWidth >= 992,
+      easing: 'cubic-bezier(0.22, 0.61, 0.36, 1)'
+    });
+
+    // Optional: disable heavy animations on low-end mobile
+    if (window.innerWidth < 768) {
+      document.querySelectorAll('.ken-burns-bg').forEach(el => el.style.animation = 'none');
+    }
+  </script>
+</body>
+</html>
